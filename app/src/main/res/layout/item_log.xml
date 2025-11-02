@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:elevation="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:id="@+id/tvLogTimestamp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="01 Jan 2025, 12:00"
+                android:textSize="12sp"
+                android:textColor="#666666"/>
+
+            <TextView
+                android:id="@+id/tvLogScore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="85"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#D32F2F"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:background="#FFEBEE"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="4dp">
+
+            <TextView
+                android:id="@+id/tvLogApp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="whatsapp"
+                android:textSize="12sp"
+                android:textColor="#1976D2"
+                android:textStyle="bold"
+                android:paddingEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/tvLogReason"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VIRTEX"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="#D32F2F"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvLogMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Message preview..."
+            android:textSize="14sp"
+            android:maxLines="2"
+            android:ellipsize="end"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

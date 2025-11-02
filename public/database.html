@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💾 Database - PerisaiChat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="material-icons">shield</span>
+                <h1>PerisaiChat</h1>
+            </div>
+            <div class="nav-links">
+                <a href="/"><span class="material-icons">dashboard</span> Dashboard</a>
+                <a href="/database.html" class="active"><span class="material-icons">storage</span> Database</a>
+                <a href="/test.html"><span class="material-icons">science</span> Test Detection</a>
+                <a href="/export.html"><span class="material-icons">file_download</span> Export</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <div>
+                <h2>💾 Database Ancaman</h2>
+                <p>Semua ancaman yang terdeteksi dan diblokir oleh sistem</p>
+            </div>
+            <button class="btn-danger" onclick="confirmDeleteAll()">
+                <span class="material-icons">delete_forever</span>
+                Hapus Semua Log
+            </button>
+        </div>
+
+        <div class="database-controls card">
+            <div class="search-box">
+                <span class="material-icons">search</span>
+                <input type="text" id="searchInput" placeholder="Cari pesan, sender, atau app source...">
+            </div>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">Semua</button>
+                <button class="filter-btn" data-filter="virtex">Virtex</button>
+                <button class="filter-btn" data-filter="phishing">Phishing</button>
+                <button class="filter-btn" data-filter="spam">Spam</button>
+                <button class="filter-btn" data-filter="false-positive">False Positive</button>
+            </div>
+        </div>
+
+        <div class="database-stats">
+            <div class="db-stat">
+                <span class="material-icons">storage</span>
+                <span>Total Logs: <strong id="totalLogs">0</strong></span>
+            </div>
+            <div class="db-stat">
+                <span class="material-icons">visibility</span>
+                <span>Ditampilkan: <strong id="displayedLogs">0</strong></span>
+            </div>
+        </div>
+
+        <div id="databaseTable"></div>
+    </main>
+
+    <div id="detailModal" class="modal">
+        <div class="modal-content card-elevated">
+            <div class="modal-header">
+                <h3>Detail Ancaman</h3>
+                <button class="btn-icon" onclick="closeModal()">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal()">Tutup</button>
+                <button class="btn-danger" onclick="deleteCurrentThreat()">
+                    <span class="material-icons">delete</span>
+                    Hapus
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/js/database.js"></script>
+</body>
+</html>

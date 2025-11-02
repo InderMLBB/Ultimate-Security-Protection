@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📦 Export - PerisaiChat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="material-icons">shield</span>
+                <h1>PerisaiChat</h1>
+            </div>
+            <div class="nav-links">
+                <a href="/"><span class="material-icons">dashboard</span> Dashboard</a>
+                <a href="/database.html"><span class="material-icons">storage</span> Database</a>
+                <a href="/test.html"><span class="material-icons">science</span> Test Detection</a>
+                <a href="/export.html" class="active"><span class="material-icons">file_download</span> Export</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <div>
+                <h2>📦 Export Evidence</h2>
+                <p>Download bukti ancaman untuk proses banding WhatsApp</p>
+            </div>
+        </div>
+
+        <div class="card-elevated" style="margin-bottom: 2rem;">
+            <h3><span class="material-icons">info</span> Informasi Export</h3>
+            <div id="exportInfo" style="margin-top: 1rem; color: var(--text-secondary);"></div>
+        </div>
+
+        <div style="display: grid; gap: 1.5rem;">
+            <div class="card-elevated">
+                <h3><span class="material-icons">description</span> Export CSV</h3>
+                <p style="color: var(--text-secondary); margin: 1rem 0;">
+                    Download semua log ancaman dalam format CSV yang bisa dibuka di Excel atau Google Sheets.
+                </p>
+                <button class="btn-primary" onclick="exportCSV()">
+                    <span class="material-icons">file_download</span>
+                    Download CSV
+                </button>
+            </div>
+
+            <div class="card-elevated">
+                <h3><span class="material-icons">mail</span> Template Surat Banding</h3>
+                <p style="color: var(--text-secondary); margin: 1rem 0;">
+                    Template surat banding otomatis untuk proses appeal ke WhatsApp Support.
+                </p>
+                <div class="card" style="background: var(--background); padding: 1.5rem; margin: 1rem 0;">
+                    <pre style="white-space: pre-wrap; margin: 0; font-size: 0.9rem;">Kepada Tim WhatsApp Support,
+
+Saya mengalami pemblokiran akun secara tiba-tiba.
+Melalui aplikasi PerisaiChat, saya memiliki bukti adanya pesan berbahaya/kenon yang dikirim ke akun saya.
+
+Terlampir file CSV berisi bukti pesan dan metadata lengkap.
+
+Mohon tinjau kembali pemblokiran akun saya.
+Terima kasih atas perhatian dan bantuannya.
+
+Hormat saya,
+(Nama Pengguna)
+(Nomor WhatsApp)</pre>
+                </div>
+                <p style="color: var(--warning); margin: 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
+                    <span class="material-icons">info</span>
+                    Isi nama dan nomor WhatsApp Anda sebelum mengirim
+                </p>
+            </div>
+
+            <div class="card-elevated" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                <h3><span class="material-icons">help</span> Cara Menggunakan Bukti</h3>
+                <ol style="margin: 1rem 0 0 1.5rem; line-height: 2;">
+                    <li>Download file CSV evidence</li>
+                    <li>Buka WhatsApp → Settings → Help → Contact Us</li>
+                    <li>Jelaskan situasi dengan template surat banding di atas</li>
+                    <li>Lampirkan file CSV sebagai bukti</li>
+                    <li>Kirim dan tunggu respon dari WhatsApp Support (24-72 jam)</li>
+                </ol>
+            </div>
+        </div>
+    </main>
+
+    <script src="/js/export.js"></script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Timestamp:"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_marginTop="8dp"/>
+        
+        <TextView
+            android:id="@+id/tvDetailTimestamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="App Source:"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_marginTop="8dp"/>
+        
+        <TextView
+            android:id="@+id/tvDetailApp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sender:"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_marginTop="8dp"/>
+        
+        <TextView
+            android:id="@+id/tvDetailSender"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="14sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reason:"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_marginTop="8dp"/>
+        
+        <TextView
+            android:id="@+id/tvDetailReason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#D32F2F"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Threat Score:"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_marginTop="8dp"/>
+        
+        <TextView
+            android:id="@+id/tvDetailScore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#D32F2F"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Message:"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_marginTop="8dp"/>
+        
+        <TextView
+            android:id="@+id/tvDetailMessage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="14sp"
+            android:background="#F5F5F5"
+            android:padding="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SHA256 Hash:"
+            android:textSize="12sp"
+            android:textColor="#666666"
+            android:layout_marginTop="8dp"/>
+        
+        <TextView
+            android:id="@+id/tvDetailHash"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textSize="10sp"
+            android:fontFamily="monospace"
+            android:background="#F5F5F5"
+            android:padding="8dp"/>
+
+        <CheckBox
+            android:id="@+id/cbFalsePositive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tandai sebagai False Positive"
+            android:layout_marginTop="16dp"/>
+
+    </LinearLayout>
+</ScrollView>

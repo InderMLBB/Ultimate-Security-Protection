@@ -1,0 +1,18 @@
+{
+  "name": "perisaichat-web-demo",
+  "version": "1.0.0",
+  "description": "PerisaiChat Web Demo - Ultimate Anti-Virtex Shield",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["anti-virtex", "threat-detection", "security"],
+  "author": "PerisaiChat",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^12.4.1",
+    "express": "^5.1.0"
+  }
+}

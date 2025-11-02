@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Test Detection - PerisaiChat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <span class="material-icons">shield</span>
+                <h1>PerisaiChat</h1>
+            </div>
+            <div class="nav-links">
+                <a href="/"><span class="material-icons">dashboard</span> Dashboard</a>
+                <a href="/database.html"><span class="material-icons">storage</span> Database</a>
+                <a href="/test.html" class="active"><span class="material-icons">science</span> Test Detection</a>
+                <a href="/export.html"><span class="material-icons">file_download</span> Export</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="page-header">
+            <div>
+                <h2>🧪 Test Threat Detection</h2>
+                <p>Uji coba deteksi ancaman dengan AI Heuristic Analyzer</p>
+            </div>
+        </div>
+
+        <div class="test-grid">
+            <div class="test-input card-elevated">
+                <h3><span class="material-icons">edit_note</span> Input Pesan Test</h3>
+                
+                <div class="input-group">
+                    <label for="testMessage">Pesan yang akan dianalisis</label>
+                    <textarea id="testMessage" rows="8" placeholder="Ketik atau paste pesan di sini untuk dianalisis..."></textarea>
+                    <div class="char-count">
+                        <span id="charCount">0</span> karakter
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="appSource">Sumber Aplikasi</label>
+                    <select id="appSource">
+                        <option value="com.whatsapp">WhatsApp</option>
+                        <option value="org.telegram.messenger">Telegram</option>
+                        <option value="com.facebook.orca">Messenger</option>
+                        <option value="com.instagram.android">Instagram</option>
+                        <option value="test.app">Test App</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="senderId">Sender ID (Optional)</label>
+                    <input type="text" id="senderId" placeholder="Nama atau nomor pengirim...">
+                </div>
+
+                <div class="button-group">
+                    <button class="btn-primary" onclick="analyzeMessage()">
+                        <span class="material-icons">psychology</span>
+                        Analisis Pesan
+                    </button>
+                    <button class="btn-secondary" onclick="loadSample('virtex')">
+                        📝 Load Sample Virtex
+                    </button>
+                    <button class="btn-secondary" onclick="loadSample('phishing')">
+                        🎣 Load Sample Phishing
+                    </button>
+                    <button class="btn-secondary" onclick="loadSample('normal')">
+                        ✅ Load Sample Normal
+                    </button>
+                </div>
+            </div>
+
+            <div class="test-result">
+                <div class="result-placeholder card" id="resultPlaceholder">
+                    <span class="material-icons">psychology</span>
+                    <p>Hasil analisis akan muncul di sini</p>
+                </div>
+
+                <div class="result-content" id="resultContent" style="display: none;">
+                    <div class="threat-score card-elevated" id="threatScoreCard">
+                        <div class="score-circle">
+                            <svg viewBox="0 0 200 200">
+                                <circle cx="100" cy="100" r="90" fill="none" stroke="#e0e0e0" stroke-width="20"/>
+                                <circle id="scoreCircle" cx="100" cy="100" r="90" fill="none" stroke-width="20" 
+                                        stroke-dasharray="565.48" stroke-dashoffset="565.48" 
+                                        transform="rotate(-90 100 100)"/>
+                            </svg>
+                            <div class="score-text">
+                                <span class="score-number" id="scoreNumber">0</span>
+                                <span class="score-label">Threat Score</span>
+                            </div>
+                        </div>
+                        <div class="threat-status" id="threatStatus">
+                            <span class="material-icons">shield</span>
+                            <span>Tidak Berbahaya</span>
+                        </div>
+                    </div>
+
+                    <div class="result-details card">
+                        <h4><span class="material-icons">info</span> Detail Analisis</h4>
+                        <div id="analysisDetails"></div>
+                    </div>
+
+                    <div class="result-actions">
+                        <button class="btn-success" id="saveBtn" onclick="saveThreat()" style="display: none;">
+                            <span class="material-icons">save</span>
+                            Simpan ke Database
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="/js/test.js"></script>
+</body>
+</html>

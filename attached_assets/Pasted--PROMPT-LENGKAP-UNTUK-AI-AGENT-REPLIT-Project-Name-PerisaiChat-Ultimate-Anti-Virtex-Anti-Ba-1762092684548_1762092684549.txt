@@ -1,0 +1,294 @@
+🛡️ PROMPT LENGKAP UNTUK AI AGENT REPLIT
+
+Project Name: PerisaiChat – Ultimate Anti-Virtex & Anti-Ban Shield (Android, Kotlin)
+
+🎯 Tujuan Aplikasi
+
+Buat sebuah aplikasi Android native berbasis Kotlin + Room Database bernama PerisaiChat.
+Aplikasi ini berfungsi sebagai sistem pertahanan real-time terhadap pesan berbahaya yang masuk melalui notifikasi (contohnya dari WhatsApp, Telegram, dll), seperti:
+
+Virus teks (virtex / kenon)
+
+Spam dengan karakter Unicode berulang
+
+Pesan dengan URL berbahaya (phishing)
+
+File mencurigakan (APK, EXE, ZIP berukuran besar)
+
+Spam massal / report bot / flood message
+
+Selain itu, aplikasi juga memiliki fitur perlindungan tambahan untuk mencegah akun WhatsApp pengguna terkena ban permanen atau sementara, serta mencatat bukti (evidence) secara otomatis jika ada ancaman atau pemblokiran.
+
+⚙️ FITUR UTAMA (CORE FEATURES)
+1. 🔰 Real-Time Notification Shield
+
+Menggunakan NotificationListenerService untuk memantau semua notifikasi masuk.
+
+Mendeteksi pesan berbahaya berdasarkan:
+
+Jumlah karakter (lebih dari 300 → dicurigai virtex)
+
+Karakter Unicode non-ASCII (rasio di atas 40%)
+
+Pengulangan simbol/emotikon yang masif
+
+URL mencurigakan seperti bit.ly, tinyurl, freegift, claim-now, bonus-ff, dll.
+
+Jika terdeteksi berbahaya:
+
+Notifikasi langsung dibatalkan (cancelNotification).
+
+Pesan disimpan di database lokal (Room) sebagai ThreatLog.
+
+Aplikasi menampilkan notifikasi internal bertuliskan “Pesan Berbahaya Diblokir”.
+
+2. 🧠 AI Heuristic Analyzer (VirusDetector.kt)
+
+Menggunakan heuristik berbasis teks untuk menilai ancaman.
+
+Mampu mengenali pola virtex kompleks (karakter tak terlihat, pengulangan simbol, teks unicode panjang).
+
+Mendeteksi phishing dengan pola domain & kata kunci mencurigakan.
+
+Menerapkan multi-layer scoring system: 0–100 (semakin tinggi = semakin berbahaya).
+
+Memberi hasil berupa:
+
+data class AnalyzeResult(
+    val score: Int,
+    val isThreat: Boolean,
+    val reason: String,
+    val matchedPattern: String
+)
+
+3. 🧾 Threat Evidence Collector
+
+Setiap pesan berbahaya akan dicatat dalam database lokal dengan kolom:
+
+id (auto increment)
+
+timestamp (UTC +7)
+
+appSource (contoh: com.whatsapp)
+
+senderId (jika tersedia)
+
+messageSnippet (maks 250 karakter)
+
+reason (virtex / phishing / spam)
+
+score (0–100)
+
+hash (SHA256 hash dari cuplikan teks)
+
+isFalsePositive (boolean, default false)
+
+screenshotPath (jika fitur screenshot aktif)
+
+Aplikasi juga bisa mengambil screenshot otomatis (hanya jika user memberi izin eksplisit) menggunakan MediaProjection API.
+Screenshot ini disimpan lokal di /storage/emulated/0/PerisaiChat/Evidence/.
+
+4. 🧰 Evidence Export & Auto Banding Template
+
+Tombol “Export Bukti” menghasilkan:
+
+logs.csv → seluruh daftar pesan berbahaya (dengan metadata).
+
+evidence/ → folder bukti berisi screenshot dan hash.
+
+readme_for_support.txt → template surat banding otomatis.
+
+Contoh isi surat banding otomatis:
+
+Kepada Tim WhatsApp Support,
+
+Saya mengalami pemblokiran akun secara tiba-tiba.
+Melalui aplikasi PerisaiChat, saya memiliki bukti adanya pesan berbahaya/kenon yang dikirim ke akun saya.
+Terlampir file ZIP berisi bukti pesan dan tangkapan layar.
+
+Mohon tinjau kembali pemblokiran akun saya.
+Terima kasih atas perhatian dan bantuannya.
+
+Hormat saya,
+(Nama Pengguna)
+(Nomor WhatsApp)
+
+5. 🛡️ Anti-Ban Advisor (Preventive Module)
+
+Fitur ini memberikan edukasi dan notifikasi preventif agar pengguna tidak terkena banned:
+
+Deteksi otomatis jika user menggunakan WhatsApp Mod / GB WhatsApp → tampilkan peringatan.
+
+Deteksi aktivitas pengiriman pesan massal otomatis (via accessibility log / usage stats).
+
+Tampilkan tips anti-ban:
+
+Aktifkan “Two-Step Verification”.
+
+Jangan gunakan aplikasi modifikasi.
+
+Hindari spam / auto broadcast.
+
+Gunakan SIM PIN dan backup akun Google.
+
+6. 🧩 False Positive & Whitelist Learning
+
+User bisa menandai log yang tidak berbahaya → falsePositive = true.
+
+Sistem otomatis belajar menyesuaikan sensitivitas heuristik jika banyak false positive.
+
+Whitelist domain & kata tertentu (misal link resmi).
+
+7. 🔒 Keamanan Data
+
+Semua data hanya disimpan lokal, tidak di-upload ke server mana pun.
+
+Pengguna bisa menghapus semua log dengan satu tombol “Hapus Semua Bukti”.
+
+Setiap file ekspor dilengkapi dengan SHA256 hash untuk mencegah modifikasi.
+
+Fitur upload ke VirusTotal hanya aktif jika user mengizinkan manual.
+
+8. 🌙 UI & Pengalaman Pengguna
+
+Tampilan sederhana (Material 3, warna biru-putih).
+
+Tombol utama:
+
+Toggle Perisai (ON/OFF)
+
+Lihat Log Ancaman
+
+Export Bukti
+
+Tips Anti-Ban
+
+Mode gelap & terang otomatis.
+
+Panduan langkah-langkah saat pertama kali menjalankan aplikasi.
+
+9. 📊 Dashboard Statistik
+
+Menampilkan grafik dengan Chart.js (via WebView):
+
+Total pesan berbahaya yang diblokir.
+
+Jenis ancaman paling sering (virtex, spam, phishing).
+
+Jumlah false positive.
+
+Status proteksi (ON / OFF).
+
+10. 🧩 Struktur Project Lengkap
+PerisaiChat/
+├── app/
+│   ├── src/main/java/com/perisaichat/
+│   │   ├── MainActivity.kt
+│   │   ├── ShieldNotificationService.kt
+│   │   ├── VirusDetector.kt
+│   │   ├── data/
+│   │   │   ├── AppDatabase.kt
+│   │   │   ├── ThreatLogDao.kt
+│   │   │   └── ThreatLog.kt
+│   │   ├── ui/
+│   │   │   ├── LogActivity.kt
+│   │   │   ├── ExportActivity.kt
+│   │   │   └── SettingsActivity.kt
+│   │   └── util/
+│   │       └── FileUtils.kt
+│   ├── res/layout/
+│   │   ├── activity_main.xml
+│   │   ├── activity_log.xml
+│   │   ├── activity_export.xml
+│   │   └── item_log.xml
+│   ├── AndroidManifest.xml
+│   └── build.gradle
+├── build.gradle
+├── gradlew
+├── README.md
+└── testdata/
+    ├── virtex.txt
+    ├── phishing.txt
+    └── normal.txt
+
+🧪 Unit Tests
+
+Tambahkan VirusDetectorTest.kt dengan pengujian:
+
+Virtex → skor > 70 → isThreat = true
+
+Phishing → skor > 60 → isThreat = true
+
+Normal → skor < 40 → isThreat = false
+
+📘 README WAJIB MEMUAT:
+
+Deskripsi aplikasi dan tujuannya.
+
+Langkah-langkah membangun (Gradle build) dan install di Android.
+
+Cara aktifkan akses notifikasi.
+
+Langkah banding jika akun diblokir (lengkap dengan template).
+
+Kebijakan privasi dan disclaimer:
+
+“PerisaiChat adalah aplikasi defensif. Tidak menjamin 100% keamanan, namun memberikan perlindungan maksimal terhadap pesan berbahaya. Pengguna bertanggung jawab atas data dan tindakan sendiri.”
+
+✅ Kriteria Penerimaan
+
+Aplikasi dianggap selesai jika:
+
+Semua fitur di atas bekerja dengan baik.
+
+Build APK berhasil dengan ./gradlew assembleDebug.
+
+README lengkap dengan panduan banding.
+
+Dapat mengekspor file bukti (ZIP).
+
+Tidak ada fitur ofensif (balas pesan, spam, kirim data keluar).
+
+Tes unit berjalan lancar (VirusDetectorTest lulus semua kasus).
+
+🧭 Instruksi untuk AI Agent Replit
+
+Buat proyek Android Gradle dengan struktur di atas.
+
+Implementasikan seluruh kode Kotlin, XML, dan README lengkap.
+
+Pastikan build APK berhasil dan bisa diunduh dari app/build/outputs/apk/debug/app-debug.apk.
+
+Tambahkan dokumentasi di README cara mengetes dengan file virtex.txt, phishing.txt, dan normal.txt.
+
+Jangan sertakan atau aktifkan fitur yang menyerang balik.
+
+⚠️ Catatan Legal
+
+Tidak boleh digunakan untuk hacking, pembalasan, atau pelanggaran privasi.
+
+Aplikasi hanya bertujuan melindungi perangkat dan akun pengguna sendiri.
+
+Fitur bukti hanya untuk laporan dan banding, bukan untuk mengekspos pihak lain.
+
+✉️ Jika akun WhatsApp diban
+
+Langkah banding cepat:
+
+Buka WhatsApp → “Bantuan → Hubungi Kami”.
+
+Lampirkan ZIP dari fitur Export Bukti.
+
+Gunakan template otomatis dari readme_for_support.txt.
+
+Tunggu respon resmi dari pihak WhatsApp.
+
+🏁 Output Akhir yang Diharapkan dari Agent:
+
+Folder proyek Android lengkap.
+
+File README.md sangat rinci.
+
+Contoh file ZIP hasil export (dummy).
+
+Build APK (app-debug.apk) siap diuji.
